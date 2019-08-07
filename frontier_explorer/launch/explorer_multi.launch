@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="spawn_drone" default="true" />
+	<node pkg="frontier_explorer" name="explorer" type="explorer.py" output="screen">
+	</node>
+	<node pkg="frontier_explorer" name="explorer2" type="explorer2.py" output="screen">
+	</node>
+	<node pkg="frontier_explorer" name="explorer3" type="explorer3.py" output="screen">
+	</node>
+</launch>
