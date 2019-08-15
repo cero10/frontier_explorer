@@ -269,22 +269,6 @@ class object:
 		dist = abs(self.pos.pose.pose.position.x - self.goal.pose.position.x) + abs(self.pos.pose.pose.position.y - self.goal.pose.position.y)
 		return dist
 
-	def check_if_moved(self):
-		global start
-		if (time.time()-start) > 4:
-			start = time.time()
-			a = abs(self.pos.pose.pose.position.x - self.lastx)
-			b = abs(self.pos.pose.pose.position.y - self.lasty)
-			c = abs(self.yaw - self.lastyaw)
-			self.lastx = self.pos.pose.pose.position.x
-			self.lasty = self.pos.pose.pose.position.y
-			self.lastyaw = self.yaw
-			if a < 0.8 or b < 0.8 or c < 0.5:
-				return 1
-			else:
-				return 0
-		else:
-			return 0
 
 	def update_pos(self, msg):
 		self.pos = msg
@@ -331,7 +315,6 @@ def front_explorer():
 			else:
 				drone1.counter1 = drone1.counter1 + 1
 
-			#if drone1.calc_dist() < 2.0 or drone1.check_if_moved() == 1:
 			if drone1.calc_dist() < 2.0 or (time.time()-start) > 20:
 				start = time.time()
 				string = drone1.frontier_designator()
